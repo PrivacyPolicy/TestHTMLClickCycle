@@ -1,0 +1,55 @@
+<head>
+    <script src="jquery.min.js"></script>
+    <script>
+        $(function() {
+            var index = 1;
+            const duration = .5;
+            $("img").click(function(event) {
+                var $img = $(event.currentTarget);
+                var imgs = $img.attr("data-imgs");
+                if (!$img.hasClass("anim")) {
+                    imgs = imgs.split(",");
+                    $img.addClass("anim");
+                    setTimeout(function() {
+                        $img.attr("src", imgs[++index % imgs.length]);
+                    }, duration * 1000 / 2);
+                    setTimeout(function() {
+                        $img.removeClass("anim");
+                    }, duration * 1000);
+                }
+            });
+        });
+    </script>
+    <style>
+        @keyframes squibounce {
+            0% {
+                transform: scale(0.98, 1.02) translateY(0);
+            }
+            50% {
+                transform: scale(1.9, 0.05) translateY(-100%);
+            }
+            90% {
+                transform: scale(.95, 1.01) translateY(2%);
+            }
+            100% {
+                transform: scale(1, 1) translateY(0);
+            }
+        }
+        img.anim {
+            animation: squibounce .5s;
+            transform-origin: bottom;
+        }
+        img {
+            user-select: none;
+            -webkit-user-select: none;
+            cursor: pointer;
+        }
+    </style>
+</head>
+<body>
+
+    <img src="Flame1New.png" alt="Feel the flame!"
+         data-imgs="Flame1New.png,Flame2New.png,Flame3New.png,Flame4New.png,Flame5New.png,Flame6New.png,Flame7New.png,Flame8New.png,Flame9New.png"
+         width=200 height=250>
+    
+</body>
